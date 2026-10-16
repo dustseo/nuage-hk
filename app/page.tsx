@@ -55,7 +55,7 @@ export default function Home() {
       <div className="text-center"><p className="serif text-sm tracking-[0.4em] text-gold">GALLERY</p><h2 className="mt-4 text-3xl font-light">美肌日誌</h2></div>
       <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">{[0,1,2,3,4,5,6,7].map(i => (
         <a key={i} href={IG} target="_blank" className={`flex aspect-square items-center justify-center rounded-2xl text-sm text-ink/40 transition hover:opacity-80 ${i%3===0?"bg-[#dfe5d6]":i%3===1?"bg-[#efe9df]":"bg-white"}`}>
-          "@nuage_hk"</a>))}</div>
+          @nuage_hk</a>))}</div>
       <p className="mt-6 text-center text-sm text-ink/50">圖片待補充 — 請於 Instagram 瀏覽更多</p>
     </section>
 
