@@ -1,79 +1,80 @@
-const IG = "https://www.instagram.com/nuage_hk/";
-const Ph = ({ t }: { t: string }) => <span className="rounded bg-gold/15 px-2 py-0.5 text-sm text-gold">【待補充：{t}】</span>;
-const pillars = [
-  { en: "Swiss Technology", zh: "瑞士頂尖技術", img: "/images/cream.jpg", d: "引入瑞士護膚科研技術，以科學創新重塑肌膚年輕活力。" },
-  { en: "Plant Stem Cells", zh: "瑞士植物幹細胞", img: "/images/leaf.jpg", d: "感受瑞士植物幹細胞的神奇魅力，喚醒肌膚自然光采。" },
-  { en: "Botanical Essence", zh: "天然植物精華", img: "/images/botanicals.jpg", d: "結合天然植物精華，溫和呵護，煥發自信光芒。" },
-];
+import Image from "next/image";
+import Link from "next/link";
+import { collections, products, articles, reviews, ingredients, IG, SITE } from "@/lib/data";
+import { ProductCard, Demo, Eyebrow, JsonLd } from "@/components/ui";
+import { meta } from "@/lib/seo";
+
+export const metadata = { ...meta("NÜAGE 香港 | 瑞士植物幹細胞護膚 Swiss Skincare", "以科學創新重塑肌膚年輕活力。NÜAGE 結合瑞士頂尖技術與天然植物精華，探索瑞士植物幹細胞逆齡護膚系列。", "/"), title: { absolute: "NÜAGE 香港 | 瑞士植物幹細胞護膚 Swiss Skincare" } };
+
 export default function Home() {
-  return (<main>
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/5 bg-cream/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#" className="serif text-2xl tracking-[0.3em]">NÜAGE</a>
-        <div className="hidden gap-8 text-sm md:flex">
-          <a href="#about">品牌故事</a><a href="#products">產品</a><a href="#gallery">美肌日誌</a><a href="#contact">聯絡我們</a></div>
-      </nav></header>
-
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-gradient-to-br from-cream via-[#efe9df] to-[#dfe5d6] pt-20">
-      <div className="absolute -right-32 top-20 h-[32rem] w-[32rem] rounded-full bg-white/60 blur-3xl" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-2">
-        <div>
-          <p className="mb-4 text-xs tracking-[0.4em] text-sage">SWISS SKINCARE · HONG KONG</p>
-          <h1 className="text-4xl font-light leading-tight md:text-6xl">以科學創新<br />重塑肌膚<span className="text-gold">年輕活力</span></h1>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">實現真正逆齡美肌的夢想。NÜAGE結合瑞士頂尖技術與天然植物精華，為您呈現完美肌膚，煥發自信光采。</p>
-          <div className="mt-10 flex gap-4">
-            <a href="#products" className="rounded-full bg-ink px-8 py-3 text-sm text-cream transition hover:bg-sage">探索產品</a>
-            <a href={IG} target="_blank" className="rounded-full border border-ink px-8 py-3 text-sm transition hover:bg-ink hover:text-cream">Instagram</a>
-          </div></div>
-        <div className="flex justify-center">
-          <div className="relative h-72 w-72 md:h-96 md:w-96">
-            <div className="absolute inset-0 rounded-full border border-gold/40" />
-            <img src="/images/serum.jpg" alt="植物精華護膚 (示範圖片)" className="absolute inset-6 h-[calc(100%-3rem)] w-[calc(100%-3rem)] rounded-full object-cover shadow-2xl" />
-          </div></div>
-      </div></section>
-
-    <section id="about" className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-28 md:grid-cols-2"><img src="/images/alps.jpg" alt="瑞士阿爾卑斯山 (示範圖片)" className="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl" /><div>
-      <p className="serif text-sm tracking-[0.4em] text-gold">OUR STORY</p>
-      <h2 className="mt-4 text-3xl font-light md:text-4xl">散發您獨特專屬的美麗光芒</h2>
-      <p className="mt-8 text-lg leading-loose text-ink/70">NÜAGE 相信，真正的美源於健康而充滿活力的肌膚。我們以科學創新為本，融合瑞士頂尖技術與天然植物精華，即刻感受瑞士植物幹細胞的神奇魅力。</p>
-    </div></section>
-
-    <section id="products" className="bg-white py-28"><div className="mx-auto max-w-6xl px-6">
-      <div className="text-center"><p className="serif text-sm tracking-[0.4em] text-gold">THE NÜAGE WAY</p>
-        <h2 className="mt-4 text-3xl font-light">品牌核心</h2></div>
-      <div className="mt-16 grid gap-8 md:grid-cols-3">{pillars.map(p => (
-        <div key={p.en} className="overflow-hidden rounded-3xl border border-ink/5 bg-cream transition hover:-translate-y-1 hover:shadow-xl"><img src={p.img} alt="" className="h-56 w-full object-cover" /><div className="p-8">
-          <p className="serif text-xl text-sage">{p.en}</p><h3 className="mt-2 text-xl">{p.zh}</h3>
-          <p className="mt-4 leading-relaxed text-ink/70">{p.d}</p></div></div>))}</div>
-      <div className="mt-16 rounded-3xl bg-ink p-10 text-center text-cream">
-        <h3 className="text-2xl font-light">產品系列</h3>
-        <p className="mt-4 text-cream/70">產品名稱、功效及價錢：<Ph t="產品資料" /></p>
-        <a href={IG} target="_blank" className="mt-6 inline-block rounded-full bg-gold px-8 py-3 text-sm">到 Instagram 查看最新產品</a>
-      </div></div></section>
-
-    <section id="gallery" className="mx-auto max-w-6xl px-6 py-28">
-      <div className="text-center"><p className="serif text-sm tracking-[0.4em] text-gold">GALLERY</p><h2 className="mt-4 text-3xl font-light">美肌日誌</h2></div>
-      <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">{["serum","eucalyptus","spa","botanicals","alps","massage","cream","leaf"].map(n => (
-        <a key={n} href={IG} target="_blank" className="group block aspect-square overflow-hidden rounded-2xl"><img src={`/images/${n}.jpg`} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" /></a>))}</div>
-      <p className="mt-6 text-center text-sm text-ink/50">示範圖片（Unsplash）— 正式產品圖片待補充，請於 Instagram 瀏覽更多</p>
+  return (<>
+    <JsonLd data={[
+      { "@context": "https://schema.org", "@type": "Organization", name: "NÜAGE", url: SITE, logo: SITE + "/images/serum.jpg", sameAs: [IG] },
+      { "@context": "https://schema.org", "@type": "WebSite", name: "NÜAGE 香港", url: SITE, inLanguage: "zh-HK" },
+    ]} />
+    <section className="relative flex min-h-[88vh] items-center overflow-hidden">
+      <Image src="/images/serum.jpg" alt="植物精華滴管瓶與綠葉，展現瑞士植物護膚" fill priority sizes="100vw" className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/85 to-cream/50 md:to-transparent" />
+      <div className="relative mx-auto w-full max-w-7xl px-6">
+        <Eyebrow>SWISS PLANT STEM CELL SKINCARE</Eyebrow>
+        <h1 className="mt-6 max-w-xl text-4xl font-light leading-tight md:text-6xl">以科學創新<br />重塑肌膚<span className="text-gold">年輕活力</span></h1>
+        <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">實現真正逆齡美肌的夢想。NÜAGE 結合瑞士頂尖技術與天然植物精華，為您呈現完美肌膚，煥發自信光采。</p>
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link href="/shop" className="bg-ink px-10 py-4 text-xs tracking-widest text-cream hover:bg-sage">探索產品 SHOP NOW</Link>
+          <Link href="/science" className="border border-ink px-10 py-4 text-xs tracking-widest hover:bg-ink hover:text-cream">瑞士科技 OUR SCIENCE</Link>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" className="bg-[#dfe5d6] py-28"><div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2">
-      <div><p className="serif text-sm tracking-[0.4em] text-gold">VISIT & CONTACT</p><h2 className="mt-4 text-3xl font-light">聯絡我們</h2>
-        <p className="mt-6 leading-relaxed text-ink/70">歡迎透過 Instagram 私訊查詢產品及預約。</p>
-        <a href={IG} target="_blank" className="mt-8 inline-block rounded-full bg-ink px-8 py-3 text-sm text-cream">@nuage_hk</a></div>
-      <dl className="space-y-6 rounded-3xl bg-white/70 p-10">
-        <div><dt className="text-sm text-sage">地址 Address</dt><dd className="mt-1"><Ph t="地址" /></dd></div>
-        <div><dt className="text-sm text-sage">營業時間 Hours</dt><dd className="mt-1"><Ph t="營業時間" /></dd></div>
-        <div><dt className="text-sm text-sage">WhatsApp / 電話</dt><dd className="mt-1"><Ph t="電話" /></dd></div>
-        <div><dt className="text-sm text-sage">電郵 Email</dt><dd className="mt-1"><Ph t="電郵" /></dd></div>
-      </dl></div></section>
+    <section className="mx-auto max-w-7xl px-6 py-24">
+      <div className="text-center"><Eyebrow>COLLECTIONS</Eyebrow><h2 className="mt-4 text-3xl font-light">護膚系列</h2></div>
+      <div className="mt-14 grid gap-6 md:grid-cols-3">{collections.map((c) => (
+        <Link key={c.slug} href={`/collections/${c.slug}`} className="group relative block aspect-[3/4] overflow-hidden">
+          <Image src={c.image} alt={`${c.name}系列意境圖`} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
+          <div className="absolute bottom-8 left-8 text-cream"><p className="serif text-lg text-gold">{c.en}</p><h3 className="text-2xl font-light">{c.name}</h3></div>
+        </Link>))}</div>
+    </section>
 
-    <footer className="bg-ink py-12 text-center text-cream/60">
-      <p className="serif text-2xl tracking-[0.3em] text-cream">NÜAGE</p>
-      <p className="mt-3 text-sm">Swiss Plant Stem Cell Skincare · Hong Kong</p>
-      <a href={IG} target="_blank" className="mt-4 inline-block text-sm underline">Instagram @nuage_hk</a>
-      <p className="mt-6 text-xs">© {new Date().getFullYear()} NÜAGE Hong Kong. All rights reserved.</p>
-    </footer>
-  </main>);
+    <section className="bg-white py-24"><div className="mx-auto max-w-7xl px-6">
+      <div className="flex items-end justify-between"><div><Eyebrow>BESTSELLERS</Eyebrow><h2 className="mt-4 text-3xl font-light">人氣之選<Demo /></h2></div>
+        <Link href="/shop" className="text-xs tracking-widest underline underline-offset-8">查看全部</Link></div>
+      <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4">{products.slice(0, 4).map((p) => <ProductCard key={p.slug} p={p} />)}</div>
+    </div></section>
+
+    <section className="grid md:grid-cols-2">
+      <div className="relative min-h-[420px]"><Image src="/images/matterhorn.jpg" alt="瑞士阿爾卑斯山馬特洪峰雪景" fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" /></div>
+      <div className="flex items-center bg-mist px-8 py-20 md:px-16"><div>
+        <Eyebrow>OUR SCIENCE</Eyebrow><h2 className="mt-4 text-3xl font-light">源自瑞士的植物細胞科技</h2>
+        <p className="mt-6 leading-loose text-ink/75">瑞士以精密科研聞名。NÜAGE 引入瑞士植物細胞培養技術，將植物幹細胞萃取物與天然植物精華結合，為肌膚帶來年輕活力。</p>
+        <Link href="/science" className="mt-8 inline-block border-b border-ink pb-1 text-xs tracking-widest">了解更多 DISCOVER</Link>
+      </div></div>
+    </section>
+
+    <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-24 md:grid-cols-2">
+      <div><Eyebrow>KEY INGREDIENT</Eyebrow><h2 className="mt-4 text-3xl font-light">{ingredients["plant-stem-cell"].name}</h2>
+        <p className="mt-6 leading-loose text-ink/75">{ingredients["plant-stem-cell"].desc}</p>
+        <Link href="/ingredients" className="mt-8 inline-block border-b border-ink pb-1 text-xs tracking-widest">成分詞典 GLOSSARY</Link></div>
+      <div className="relative aspect-square"><Image src="/images/ferns.jpg" alt="翠綠蕨類植物葉片" fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" /></div>
+    </section>
+
+    <section className="bg-sand py-24"><div className="mx-auto max-w-6xl px-6 text-center">
+      <Eyebrow>TESTIMONIALS</Eyebrow><h2 className="mt-4 text-3xl font-light">用家分享<Demo t="示範評價" /></h2>
+      <div className="mt-12 grid gap-8 md:grid-cols-3">{reviews.map((r) => (
+        <figure key={r.name} className="bg-cream p-10"><blockquote className="serif text-xl leading-relaxed">「{r.text}」</blockquote><figcaption className="mt-6 text-xs tracking-widest text-sage">— {r.name}</figcaption></figure>))}</div>
+    </div></section>
+
+    <section className="mx-auto max-w-7xl px-6 py-24">
+      <div className="flex items-end justify-between"><div><Eyebrow>JOURNAL</Eyebrow><h2 className="mt-4 text-3xl font-light">美肌誌</h2></div><Link href="/journal" className="text-xs tracking-widest underline underline-offset-8">全部文章</Link></div>
+      <div className="mt-12 grid gap-8 md:grid-cols-3">{articles.slice(0, 3).map((a) => (
+        <article key={a.slug}><Link href={`/journal/${a.slug}`} className="group">
+          <div className="relative aspect-[4/3] overflow-hidden"><Image src={a.image} alt={a.title} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" /></div>
+          <h3 className="mt-5 text-lg group-hover:text-gold">{a.title}</h3><p className="mt-2 text-sm text-ink/60">{a.excerpt}</p></Link></article>))}</div>
+    </section>
+
+    <section className="bg-ink py-20 text-center text-cream">
+      <Eyebrow>@NUAGE_HK</Eyebrow><h2 className="mt-4 text-3xl font-light">於 Instagram 關注我們</h2>
+      <a href={IG} target="_blank" rel="noopener" className="mt-8 inline-block border border-gold px-10 py-4 text-xs tracking-widest text-gold hover:bg-gold hover:text-ink">FOLLOW ON INSTAGRAM</a>
+    </section>
+  </>);
 }
